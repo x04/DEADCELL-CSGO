@@ -5,7 +5,6 @@
 [![Discord](https://img.shields.io/discord/559937792092667904.svg?label=discord)](https://discord.gg/dEMgzUZ)
 [![Build status](https://ci.appveyor.com/api/projects/status/hed52wml7ovx3qxb?svg=true)](https://ci.appveyor.com/project/EternityX/deadcell-csgo) 
 [![GitHub Issues](https://img.shields.io/github/issues/EternityX/DEADCELL-CSGO.svg)](https://github.com/EternityX/DEADCELL-CSGO/issues)
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/eternityx/deadcell-csgo.svg)](http://isitmaintained.com/project/eternityx/deadcell-csgo "Average time to resolve an issue")
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/EternityX/DEADCELL-CSGO/blob/master/LICENSE)
 
 ## Preface
@@ -23,7 +22,7 @@ We invite anyone interested in supporting development to join our Discord.
 This is NOT for tech support. If you have an issue, open one [here](https://github.com/EternityX/DEADCELL-CSGO/issues/new/choose).
 
 ## Known issues
-- Weapon script assertions.
+- Crashes.
 - Some of the code is unoptimized.
 - If you come across any more issues, please notify us via the issue tracker.
 

@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="csgo\features\chaiscript\chai_console.cpp" />
+    <ClCompile Include="csgo\features\chaiscript\chai_wrapper.cpp" />
     <ClCompile Include="csgo\features\entity listener\ent_listener.cpp" />
     <ClCompile Include="csgo\configs\configs.cpp" />
     <ClCompile Include="csgo\dllmain.cpp" />
@@ -54,6 +56,7 @@
     <ClCompile Include="csgo\hooking\hooks\Present.cpp" />
     <ClCompile Include="csgo\hooking\hooks\RenderSmokeOverlay.cpp" />
     <ClCompile Include="csgo\hooking\hooks\Reset.cpp" />
+    <ClCompile Include="csgo\hooking\hooks\ResetEx.cpp" />
     <ClCompile Include="csgo\hooking\hooks\SceneEnd.cpp" />
     <ClCompile Include="csgo\hooking\hooks\SetupBones.cpp" />
     <ClCompile Include="csgo\hooking\hooks\ShouldDrawFog.cpp" />
@@ -62,6 +65,8 @@
     <ClCompile Include="csgo\hooking\hooks\DrawSetColor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="csgo\features\chaiscript\chai_console.hpp" />
+    <ClInclude Include="csgo\features\chaiscript\chai_wrapper.hpp" />
     <ClInclude Include="csgo\features\entity listener\ent_listener.h" />
     <ClInclude Include="csgo\configs\config.h" />
     <ClInclude Include="csgo\features\animations\anim.h" />
@@ -265,7 +270,7 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <MinimalRebuild>false</MinimalRebuild>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <DebugInformationFormat>None</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

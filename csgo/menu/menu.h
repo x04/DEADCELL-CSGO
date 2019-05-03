@@ -12,7 +12,7 @@ private:
 public:
 	std::shared_ptr< OSHGui::Form > m_form;
 	std::shared_ptr< OSHGui::Form > m_dangerzone_form;
-
+	std::shared_ptr< OSHGui::Form > m_chaiscript_form;
 	std::string m_selected_sound_text;
 
 	c_menu( );
@@ -205,5 +205,20 @@ private:
 public:
 	c_dangerzone_form( ) {
 		init_component( );
+	}
+};
+
+class c_chaiscript_form : public OSHGui::Form {
+private:
+	void update_label();
+	// initialize all controls.
+	void init_component();
+	void init_controls();
+	void submit_code();
+public:
+	OSHGui::Label* label_console_pos = new OSHGui::Label();
+	OSHGui::TextBox* text_input = new OSHGui::TextBox();
+	c_chaiscript_form() {
+		init_component();
 	}
 };

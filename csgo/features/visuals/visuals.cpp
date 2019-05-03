@@ -209,6 +209,9 @@ void c_visuals::player( c_csplayer *entity ) {
 	const auto money_color    = OSHColor::FromARGB( g_vars.visuals.money_color, m_alpha.at( index ) );
 	const auto flashed_color  = OSHColor::FromARGB( g_vars.visuals.flash_bar_color, m_alpha.at( index ) );
 
+	m_ctx.flag_count = 0;
+	m_ctx.offset = 0;
+
 	if( g_vars.visuals.bbox )
 		draw_box( box_color, index, box.x, box.y, box.w, box.h );
 
@@ -246,11 +249,6 @@ void c_visuals::player( c_csplayer *entity ) {
 
 	if( g_vars.visuals.flags )
 		draw_flags( entity, flag_color, box.x, box.y, box.w, box.h );
-
-	/// even if no flags are drawn the flag counter ( used above in money ) and
-	/// the offset ( used for e.g. weapon/ammo ) has to be reset
-	m_ctx.flag_count = 0;
-	m_ctx.offset = 0;
 }
 
 void c_visuals::handle_glow( ) {
@@ -418,9 +416,6 @@ void c_visuals::flash_bar( c_csplayer *player, OSHColor color, float x, float y,
 }
 
 void c_visuals::draw_flags( c_csplayer *player, OSHColor color, float x, float y, float w, float h ) {
-	m_ctx.offset = 0;
-	m_ctx.flag_count = 0;
-
 	std::string armor_flag;
 	if( player->helmet( ) )
 		armor_flag += "H";
@@ -791,16 +786,6 @@ void c_visuals::draw_scope( ) const {
 		g_renderer.filled_rect( OSHColor::FromARGB( g_vars.visuals.misc.scope_color ), 0, size.Height * 0.5f, size.Width, 1 );
 		g_renderer.filled_rect( OSHColor::FromARGB( g_vars.visuals.misc.scope_color ), size.Width * 0.5f, 0, 1, size.Height );
 	}
-	else {
-		float spread = ( local->get_active_weapon( )->inaccuracy( ) + local->get_active_weapon( )->spread( ) ) * 320;
-		float height = std::clamp( spread, 1.f, 25.f );
-		float alpha = ( 255.f - ( height * 4.2f ) );
-
-		auto color = OSHColor::FromARGB( g_vars.visuals.misc.scope_color, alpha );
-
-		g_renderer.filled_rect( color, 0, ( size.Height * 0.5f ) - ( height / 2.f ), size.Width, height );
-		g_renderer.filled_rect( color, ( size.Width * 0.5f ) - ( height / 2.f ), 0, height, size.Height );
-	}
 }
 
 void c_visuals::draw_crosshair( ) const {
@@ -848,7 +833,7 @@ void c_visuals::draw_crosshair( ) const {
 		cone *= 90.f / g_vars.visuals.effects.camera_fov;
 
 		for ( int seed = 0; seed < 256; ++seed ) {
-			static auto random_seed = reinterpret_cast< void( *)( int ) >( GetProcAddress( GetModuleHandleA( "vstdlib.dll" ), "RandomSeed" ) );
+			static auto random_seed = pe::get_export< void( *)( int ) >( pe::get_module( "vstdlib.dll" ), "RandomSeed" );
 			random_seed( seed );
 
 			float rand_a = math::random_float( 0.f, 1.0f );
